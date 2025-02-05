@@ -1,8 +1,9 @@
 const con=require("./connection")
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const dotenv=require("dotenv");
 const app = express();
+dotenv.config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
@@ -17,4 +18,5 @@ app.post("/register",(req,res)=>{
         res.render("success", { email });
     });
 })
-app.listen(3000, () => console.log("Server running on port 3000"));
+const PORT=process.env.PORT||3000;
+app.listen(PORT, () => console.log("Server running on port 3000"));
